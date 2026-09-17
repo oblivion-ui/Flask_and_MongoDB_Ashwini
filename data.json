@@ -8,5 +8,10 @@
         "id": 2,
         "name": "Student",
         "course": "Flask and MongoDB"
+    },
+    {
+        "id": 3,
+        "name": "New Student",
+        "course": "Git and GitHub"
     }
 ]
