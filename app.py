@@ -72,7 +72,26 @@ def api():
             "error": str(e)
         }), 500
 
+# To-Do item submission API
+@app.route("/submittodoitem", methods=["POST"])
+def submit_todo_item():
 
+    try:
+        item_name = request.form.get("itemName")
+        item_description = request.form.get("itemDescription")
+
+        if not item_name or not item_description:
+            return "Item Name and Item Description are required.", 400
+
+        collection.insert_one({
+            "itemName": item_name,
+            "itemDescription": item_description
+        })
+
+        return redirect(url_for("success"))
+
+    except Exception as e:
+        return f"Error: {str(e)}", 500
 # Start Flask server
 if __name__ == "__main__":
     app.run(debug=True)
