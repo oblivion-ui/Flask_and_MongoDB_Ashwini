@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flask MongoDB Form</title>
+    <title>Flask MongoDB To-Do</title>
 
     <style>
         body {
@@ -12,7 +12,7 @@
         }
 
         .container {
-            width: 400px;
+            width: 450px;
             margin: auto;
             background: white;
             padding: 30px;
@@ -28,11 +28,16 @@
             font-weight: bold;
         }
 
-        input {
+        input, textarea {
             width: 100%;
             padding: 10px;
             margin: 8px 0 15px;
             box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
         }
 
         button {
@@ -43,13 +48,6 @@
             border: none;
             cursor: pointer;
         }
-
-        .error {
-            background-color: #ffdddd;
-            color: red;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
     </style>
 </head>
 
@@ -57,28 +55,17 @@
 
 <div class="container">
 
-    <h1>Student Form</h1>
+    <h1>To-Do Item</h1>
 
-    {% if error %}
-        <div class="error">
-            Error: {{ error }}
-        </div>
-    {% endif %}
+    <form method="POST" action="/submittodoitem">
 
-    <form method="POST">
+        <label>Item Name:</label>
+        <input type="text" name="itemName" required>
 
-        <label>Name:</label>
-        <input type="text" name="name">
+        <label>Item Description:</label>
+        <textarea name="itemDescription" required></textarea>
 
-        <label>Email:</label>
-        <input type="email" name="email">
-
-        <label>Course:</label>
-        <input type="text" name="course">
-
-        <button type="submit">
-            Submit Data
-        </button>
+        <button type="submit">Submit To-Do Item</button>
 
     </form>
 
